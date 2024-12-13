@@ -35,6 +35,12 @@
 
 <script setup lang="ts">
 
+const { data, skills, status } = await useFetch('api/skill/list', {
+  method: 'GET',
+});
+
+console.log('test', data, skills, status)
+
 const historyText = [
   `Программирование - это возможность постоянно учиться и развиваться.
   В IT-сфере технологии и инструменты быстро меняются, и каждый новый проект дает шанс освоить что-то новое,
