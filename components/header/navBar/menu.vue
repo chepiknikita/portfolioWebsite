@@ -1,17 +1,24 @@
 <template>
-  <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-    <div class="flex shrink-0 items-center z-50">
-      <div>NC</div>
-    </div>
-    <div class="hidden sm:ml-6 sm:block w-full">
-      <div class="flex space-x-8 justify-center">
+  <div class="w-full">
+    <div class="flex sm:items-stretch sm:justify-start">
+      <div class="w-[70px]">
+        <div class="logo">NC</div>
+      </div>
+      <div class="flex-1 flex space-x-8 justify-center">
         <NuxtLink
           v-for="(item, ind) in items"
           :key="ind"
           :class="[item.key === $route.name ? 'nav-link-active' : 'nav-link']"
           :to="item.path"
         >
-          {{  item.name }}
+          {{ item.name }}
+        </NuxtLink>
+      </div>
+       <div class="w-[70px]">
+          <NuxtLink
+            :class="['contacts' === $route.name ? 'nav-link-active' : 'nav-link']" to="/contacts"
+          >
+          Контакты
         </NuxtLink>
       </div>
     </div>
@@ -27,9 +34,23 @@ defineProps<{
 </script>
 
 <style scoped lang="postcss">
-.nav-link-active,
+.logo {
+  font-family: Lora;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 100%;
+}
+  .nav-link-active,
 .nav-link {
   @apply relative after:content-[''] after:absolute after:h-[2px] after:right-0 after:bottom-0 after:transition-[width] after:duration-500 py-2 text-sm font-medium;
+  font-weight: 500;
+  font-size: 11px;
+  font-family: Manrope;
+  font-style: Medium;
+  line-height: 100%;
+  letter-spacing: 5%;
+  text-transform: uppercase;
 }
 
 .nav-link-active {

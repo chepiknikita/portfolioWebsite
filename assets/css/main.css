@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+  font-family: 'Manrope';
+  font-size: 14px;
+  font-style: normal;
+  font-weght: 500;
+}
 body {
   background-color: black;
   color: #fff;
@@ -13,14 +19,14 @@ body.hidden-body {
 }
 
 .the-title-preview {
-  @apply text-5xl font-semibold text-white sm:text-7xl lg:text-8xl
+  @apply text-5xl font-normal text-white sm:text-7xl lg:text-[106px] font-['Lora']
 }
 
 .the-text-preview {
-  @apply text-2xl sm:text-4xl lg:text-5xl
+  @apply text-2xl font-normal sm:text-4xl lg:text-4xl font-['Lora']
 }
 .the-title-main {
-  @apply text-xl sm:text-2xl lg:text-3xl;
+  @apply font-['Lora'] font-normal text-5xl sm:text-4xl lg:text-5xl;
 }
 
 .the-title-secondary {

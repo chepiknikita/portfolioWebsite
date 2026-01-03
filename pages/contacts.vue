@@ -1,7 +1,7 @@
 <template>
   <article>
     <section>
-      <ContactPreview />
+      <PagePreview :value="{ title: 'Держим связь', description: 'Обращайтесь за проектами или сотрудничеством!' }" />
     </section>
     <section>
       <ContactInfo />

@@ -1,10 +1,13 @@
 <template>
-  <div class="mx-auto py-4 px-2">
-    <div class="the-title-main text-center py-2">{{ title }}</div>
-    <div class="the-text-main px-4 sm:px-10 lg:px-14 grid gap-2">
-      <p v-for="(item, index) in text" :key="index">
-        {{ item }}
-      </p>
+  <div class="px-2">
+  <div class="font-['Lora'] font-normal lg:text-5xl p-[72px] w-[500px]">{{ title }}</div>
+    <div class="flex flex-wrap justify-center items-stretch px-[72px]">
+      <div v-for="(item, index) in text" :key="index" class="flex">
+        <div class="border border-white/20 p-[24px] m-[16px] w-[320px] border-l-[5px] flex-1">
+          <div class="font-['Lora'] font-normal lg:text-3xl">{{item.title}}</div>
+          <div class="font-medium lg:text-sm mt-3">{{ item.description }}</div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -14,7 +17,7 @@ import { defineProps } from 'vue';
 
 defineProps<{
   title: string;
-  text: string[];
+  text: { title: string, description: string }[];
 }>();
 </script>
 
