@@ -27,7 +27,7 @@ const menuItems = [
   },
   {
     name: 'Резюме',
-    path: '/about',
+    path: '/resume',
     key: 'about',
   },
   {

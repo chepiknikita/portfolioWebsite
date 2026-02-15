@@ -1,6 +1,6 @@
 <template>
   <div
-    class="sm:hidden bg-black fixed h-[100vh] top-[-100px] right-[0px] w-full z-40 duration-300 opacity-0 invisible pt-[70px] overflow-y-auto"
+    class="md:hidden bg-black fixed h-[100vh] top-[-100px] right-[0px] w-full z-40 duration-300 opacity-0 invisible pt-[70px] overflow-y-auto"
     :class="{'visible-menu' : isOpenMenu}"
   >
     <div class="space-y-1 px-2 pb-3 pt-8">
@@ -17,8 +17,6 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps } from 'vue';
-
 defineProps<{
   isOpenMenu: boolean;
   items: { name: string, path: string, key: string }[];

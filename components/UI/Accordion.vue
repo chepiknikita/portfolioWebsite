@@ -33,13 +33,14 @@ function handleToggle(index: number, event: Event) {
 <template>
   <div class="space-y-0 accordion-container flex flex-col gap-4">
     <details
-      v-for="(item, index) in items" :key="index"
+      v-for="(item, index) in items"
+      :key="index"
       :ref="(el) => { if (el) detailsRefs[index] = el }"
-      class="group accordion-item border border-[#665133] first:rounded-t last:rounded-b"
       @toggle="handleToggle(index, $event)"
+      class="group accordion-item border border-brand-brown first:rounded-t last:rounded-b"
     >
       <summary
-        class="flex cursor-pointer uppercase items-center justify-between px-5 py-4 text-base font-normal transition-colors hover:bg-amber-50/10 group-open:bg-amber-50/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#665133]">
+        class="flex cursor-pointer uppercase items-center justify-between px-5 py-4 text-xs font-normal transition-colors hover:bg-amber-50/10 group-open:bg-amber-50/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-brown">
         <span>{{ item.title }}</span>
         <div class="ml-4 flex h-7 w-7 shrink-0 items-center justify-center">
           <svg class="h-full w-full transition-all duration-300 group-open:rotate-45" viewBox="0 0 28 28" fill="none"
@@ -49,7 +50,7 @@ function handleToggle(index: number, event: Event) {
           </svg>
         </div>
       </summary>
-      <div class="accordion-content border-t border-[#665133] text-base pt-4">
+      <div class="accordion-content border-t border-brand-brown text-xs pt-4">
         <div class="px-5 py-4">
           <p>{{ item.content }}</p>
         </div>

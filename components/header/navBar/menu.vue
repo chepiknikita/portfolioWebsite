@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full">
+  <div class="w-full hidden md:block">
     <div class="flex sm:items-stretch sm:justify-start">
       <div class="w-[70px]">
         <div class="logo">NC</div>
@@ -14,10 +14,10 @@
           {{ item.name }}
         </NuxtLink>
       </div>
-       <div class="w-[70px]">
-          <NuxtLink
+      <div class="w-[70px]">
+        <NuxtLink
             :class="['contacts' === $route.name ? 'nav-link-active' : 'nav-link']" to="/contacts"
-          >
+        >
           Контакты
         </NuxtLink>
       </div>
@@ -26,8 +26,6 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps } from 'vue';
-
 defineProps<{
   items: { name: string, path: string, key: string }[];
 }>();

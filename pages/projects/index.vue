@@ -1,34 +1,22 @@
 <template>
   <article>
-    <section>
-      <PagePreview :value="{ title: 'Мои работы', description: 'Ниже вы найдете подборку моих проектов' }" />
-    </section>
-    <section class="pt-24 pb-10">
-      <div class="mx-20 flex justify-center">
-
-        <div class="block max-h-max max-w-max">
-          <div class="w-[250px] h-[300px]">
-            <NuxtLink to="/projects/2">
-              <img class="absolte size-full object-cover object-center" src="../../assets/image.png" alt="" />
-            </NuxtLink>
-          </div>
-          <div class="py-6">
-            <NuxtLink
-              to="/projects/2"
-              class="font-['Lora'] font-normal lg:text-3xl"
-            >
-              Read more
-            </NuxtLink>
-          </div>
-        </div>
-        
-      </div>
-    </section>
+    <HeroSection :background="backgroundImg">
+      <HeroContent title="Мои работы" description="Ниже вы найдете подборку моих проектов" />
+    </HeroSection>
+      <section class="py-14 px-4 sm:py-16 md:py-20 md:px-10 lg:px-20 lg:py-24 2xl:py-32 flex flex-col items-center justify-center md:flex-row md:gap-2 md:flex-wrap lg:gap-4 2xl:gap-6 ">
+        <ProjectCard to="/projects/2" title="Read more asdasdsad asdasdasd as dasdas" :image="projectImg"/>
+        <!-- <ProjectCard to="/projects/2" title="Read more" :image="projectImg"/>
+        <ProjectCard to="/projects/2" title="Read more" :image="projectImg"/>
+         <ProjectCard to="/projects/2" title="Read more" :image="projectImg"/>
+        <ProjectCard to="/projects/2" title="Read more" :image="projectImg"/> -->
+      </section>
   </article>
 </template>
 
 <script setup lang="ts">
 
+import projectImg from '~/assets/image.png';
+import backgroundImg from '~/assets/image.png';
 </script>
 
 <style scoped></style>

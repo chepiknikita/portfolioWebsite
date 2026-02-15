@@ -1,6 +1,6 @@
 <template>
   <footer>
-    <section>
+    <!-- <section>
       <div class="border-b-[1px] border-t-[1px] border-white/30">
         <div class="mx-auto p-14 sm:p-16 lg:p-20 grid justify-center">
           <div class="grid grid-flow-row gap-4 items-center justify-center sm:grid-flow-col sm:grid-cols-[1fr_3fr_1fr]">
@@ -35,7 +35,7 @@
           <NuxtLink>Приватная политика</NuxtLink>
         </p>
       </div>
-    </div>
+    </div> -->
     <section>
 
     </section>
