@@ -11,10 +11,16 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        custom: ['Spectral'],
+        custom: ["Spectral"],
+        lora: ["Lora", "serif"],
+        manrope: ["Manrope", "serif"],
+      },
+      colors: {
+        brand: {
+          brown: "#665133",
+        },
       },
     },
   },
   plugins: [],
-}
-
+};

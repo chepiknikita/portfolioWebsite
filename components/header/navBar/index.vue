@@ -1,14 +1,14 @@
 <template>
   <header class="flex-none relatives">
     <nav class="absolute border-b-[1px] border-white/20 top-0 left-0 z-10 right-0">
-      <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-        <div class="relative flex h-[85px] items-center justify-between">
+      <div class="md:mx-16 lg:mx-24 2xl:mx-32">
+        <div class="relative md:flex h-20 md:h-24 2xl:h-32 md:items-center md:justify-between">
           <HeaderNavBarMenuButtonMobile v-model="isOpenMenu" />
           <HeaderNavBarMenu :items="menuItems" />
         </div>
       </div>
       <HeaderNavBarMenuMobile
-        :is-open-menu="isOpenMenu"
+        v-model="isOpenMenu"
         :items="menuItems"
       />
     </nav>
@@ -27,8 +27,8 @@ const menuItems = [
   },
   {
     name: 'Резюме',
-    path: '/about',
-    key: 'about',
+    path: '/resume',
+    key: 'resume',
   },
   {
     name: 'Проекты',
@@ -39,9 +39,9 @@ const menuItems = [
 
 watch(isOpenMenu, (v) => {
   if (v) {
-    document.body.classList.add('hidden-body');
+    document.body.classList.add('overflow-hidden');
   } else {
-    document.body.classList.remove('hidden-body');
+    document.body.classList.remove('overflow-hidden');
   }
 });
 </script>

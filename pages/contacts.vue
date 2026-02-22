@@ -1,15 +1,14 @@
 <template>
-  <article>
-    <section>
-      <PagePreview :value="{ title: 'Держим связь', description: 'Обращайтесь за проектами или сотрудничеством!' }" />
-    </section>
-    <section>
-      <ContactInfo />
-    </section>
+  <article class="w-full">
+    <HeroSection :background="backgroundImg">
+      <HeroContent title="Держим связь" description="Обращайтесь за проектами или сотрудничеством!" />
+    </HeroSection>
+    <ContactsSection />
   </article>
 </template>
 
 <script setup lang="ts">
+import backgroundImg from '/assets/image.png';
 
 </script>
 

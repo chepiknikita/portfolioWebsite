@@ -31,17 +31,30 @@ function handleToggle(index: number, event: Event) {
 </script>
 
 <template>
-  <div class="space-y-0 accordion-container flex flex-col gap-4">
+  <div class="space-y-0 accordion-container flex flex-col gap-3">
     <details
-      v-for="(item, index) in items" :key="index"
+      v-for="(item, index) in items"
+      :key="index"
       :ref="(el) => { if (el) detailsRefs[index] = el }"
-      class="group accordion-item border border-[#665133] first:rounded-t last:rounded-b"
       @toggle="handleToggle(index, $event)"
+      class="group accordion-item border border-brand-brown"
     >
       <summary
-        class="flex cursor-pointer uppercase items-center justify-between px-5 py-4 text-base font-normal transition-colors hover:bg-amber-50/10 group-open:bg-amber-50/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#665133]">
+        class="
+          flex
+          items-center
+          justify-between
+          cursor-pointer
+          uppercase
+          p-4 lg:p-5 2xl:p-7
+          text-sm lg:text-base 2xl:text-xl
+          select-none
+          transition-colors
+          focus-visible:outline-none
+          focus-visible:ring-2"
+        >
         <span>{{ item.title }}</span>
-        <div class="ml-4 flex h-7 w-7 shrink-0 items-center justify-center">
+        <div class="flex h-4 w-4 sm:h-5 sm:w-5 lg:h-7 lg:w-7 2xl:h-8 2xl:w-8 shrink-0 items-center justify-center ml-2">
           <svg class="h-full w-full transition-all duration-300 group-open:rotate-45" viewBox="0 0 28 28" fill="none"
             aria-hidden="true">
             <path d="M6 12 L18 12 M12 6 L12 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -49,9 +62,9 @@ function handleToggle(index: number, event: Event) {
           </svg>
         </div>
       </summary>
-      <div class="accordion-content border-t border-[#665133] text-base pt-4">
-        <div class="px-5 py-4">
-          <p>{{ item.content }}</p>
+      <div class="accordion-content font-manrope font-normal text-sm lg:text-base 2xl:text-xl">
+        <div class="p-4 lg:px-5 lg:pb-5 2xl:px-7 2xl:pb-7">
+           {{ item.content }}
         </div>
       </div>
     </details>
