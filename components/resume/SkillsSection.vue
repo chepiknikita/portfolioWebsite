@@ -1,18 +1,18 @@
 <template>
-  <section class="py-10 px-4">
-    <div class="">
-      <div class="min-w-0">
-        <h2 class="font-lora font-normal text-2xl">Soft Skills</h2>
-        <div class="w-full my-10">
+  <section class="py-10 px-3 sm:px-10 lg:p-20 2xl:p-32">
+    <div class="lg:flex gap-4">
+      <div class="min-w-0 lg:flex-1">
+        <h2 class="font-lora font-normal text-2xl sm:text-4xl lg:text-center 2xl:text-5xl">Soft Skills</h2>
+        <div class="w-full my-6 sm:my-8 lg:my-14 2xl:my-20">
           <UIAccordion :items="softs" singleOpen />
         </div>
       </div>
-      <!-- <div class="min-w-0">
-       <h2 class="font-lora font-normal lg:text-5xl text-center mt-6 mb-10">Hard Skills</h2>
-        <div class="w-full">
+      <div class="min-w-0 lg:flex-1">
+       <h2 class="font-lora font-normal text-2xl sm:text-4xl lg:text-center 2xl:text-5xl">Hard Skills</h2>
+        <div class="w-full my-6 sm:my-8 lg:my-14 2xl:my-20">
           <UIAccordion :items="hards" singleOpen />
         </div>
-      </div> -->
+      </div>
     </div>
   </section>
 </template>

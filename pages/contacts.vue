@@ -1,5 +1,5 @@
 <template>
-  <article class="h-screen w-full">
+  <article class="w-full">
     <HeroSection :background="backgroundImg">
       <HeroContent title="Держим связь" description="Обращайтесь за проектами или сотрудничеством!" />
     </HeroSection>

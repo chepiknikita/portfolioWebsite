@@ -1,12 +1,12 @@
 <template>
-  <article>
+  <article class="w-full">
     <HeroSection :background="backgroundImg">
       <HeroContent title="Nikita Chepik" description="Мой код — это инструмент для роста бизнеса!" />
     </HeroSection>
-    <!-- <ResumeWhyWebDevSection title="Почему я выбрал веб-разработку" :reason="historyText" /> -->
-    <!-- <ResumeTechnologyStackSection title="Стек технологий"
+    <ResumeWhyWebDevSection title="Почему я выбрал веб-разработку" :reason="historyText" />
+    <ResumeTechnologyStackSection title="Стек технологий"
       description="Использую современные инструменты для создания отзывчивых и производительных интерфейсов. Ориентирован на качество кода и итоговый пользовательский опыт."
-      :images="images" /> -->
+      :images="images" />
     <ResumeSkillsSection title="Навыки" :softs="itemsS" :hards="itemsH" />
   </article>
 </template>

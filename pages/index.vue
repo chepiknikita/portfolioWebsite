@@ -1,5 +1,5 @@
 <template>
-  <article class="h-screen">
+  <article>
     <HeroSection :background="backgroundImg">
       <HeroContent title="Nikita Chepik" description="Fullstack Developer" />
     </HeroSection>

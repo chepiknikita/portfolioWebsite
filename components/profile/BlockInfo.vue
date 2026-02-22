@@ -8,9 +8,11 @@
     <div class="md:flex-1 md:flex md:justify-center md:items-center md:flex-col">
       <div class="md:max-w-72 lg:max-w-96 2xl:max-w-[612px]">
         <h2 class="font-lora font-normal text-2xl sm:text-4xl md:text-2xl lg:text-3xl 2xl:text-5xl">{{ title }}</h2>
-        <p class="text-xs my-4 sm:text-base md:text-xs lg:text-base 2xl:text-2xl">{{ description }}</p>
+        <p class="text-sm my-4 sm:text-base md:text-xs lg:text-base 2xl:text-2xl">{{ description }}</p>
         <button
-          class="bg-transparent hover:bg-brand-brown font-medium text-sm 2xl:text-2xl uppercase hover:text-white py-6 lg:py-8 xl:py-10 my-4 w-full border border-brand-brown">
+          class="bg-transparent hover:bg-brand-brown font-medium text-sm 2xl:text-2xl uppercase hover:text-white py-6 lg:py-8 xl:py-10 my-4 w-full border border-brand-brown"
+          @click="() => $router.push('/resume')"
+        >
           Узнать подробнее
         </button>
       </div>

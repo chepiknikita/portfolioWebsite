@@ -1,5 +1,5 @@
 <template>
-  <div class="grid gap-1 text-center text-[#B8B799]">
+  <div class="grid gap-1 text-center text-brand-brown">
     <div
       v-for="(name, ind) in items"
       :key="ind"
@@ -22,7 +22,7 @@ defineProps<{
 
 <style scoped lang="postcss">
 .footer-link {
-  @apply after:content-[''] after:absolute after:h-[1px] after:right-0 after:bottom-0 after:w-full after:bg-[#B8B799] after:transition-colors after:duration-500 transition-colors duration-500
+  @apply after:content-[''] after:absolute after:h-[1px] after:right-0 after:bottom-0 after:w-full after:bg-brand-brown after:transition-colors after:duration-500 transition-colors duration-500
 }
 .footer-link:hover {
   @apply hover:after:content-[''] hover:after:absolute hover:after:h-[1px] hover:after:right-0 hover:after:bottom-0 hover:after:w-full hover:after:bg-white hover:after:transition-colors hover:after:duration-500 text-white transition-colors duration-500
