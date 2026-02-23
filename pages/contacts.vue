@@ -8,7 +8,19 @@
 </template>
 
 <script setup lang="ts">
+import { onMounted } from 'vue';
+import { useContacts } from '~/composables/hooks/useContacts';
 import backgroundImg from '/assets/image.png';
+
+const {
+  sections,
+  loading,
+  fetchAll
+} = useContacts();
+
+onMounted(async () => {
+  await fetchAll();
+});
 
 </script>
 

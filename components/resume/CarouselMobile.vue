@@ -16,7 +16,7 @@
         <ResumeReasonCard
           :key="index"
           :title="item.title"
-          :description="item.description"
+          :content="item.content"
         />
       </div>
     </div>
@@ -37,7 +37,7 @@
 import { ref, onMounted, onBeforeUnmount } from 'vue'
 
 const props = defineProps<{
-  slides: { title: string, description: string }[]
+  slides: { title: string, content: string }[]
 }>();
 
 const currentIndex = ref(0);

@@ -15,8 +15,23 @@
 
 <script setup lang="ts">
 
+import { onMounted } from 'vue';
 import projectImg from '~/assets/image.png';
 import backgroundImg from '~/assets/image.png';
+import { useProjects } from '~/composables/hooks/useProjects';
+
+const {
+  projects,
+  projectBySlug,
+  loading,
+  fetchAll,
+  fetchBySlug,
+} = useProjects();
+
+onMounted(async () => {
+  await fetchAll();
+});
+
 </script>
 
 <style scoped></style>

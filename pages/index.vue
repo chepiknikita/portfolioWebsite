@@ -9,7 +9,19 @@
 </template>
 
 <script setup lang="ts">
+import { onMounted } from 'vue';
 import backgroundImg from '~/assets/image.png';
+import { useHome } from '~/composables/hooks/useHome';
+
+const {
+  sections,
+  loading,
+  fetchAll
+} = useHome();
+
+onMounted(async () => {
+  await fetchAll();
+});
 
 </script>
 

@@ -3,21 +3,32 @@
     <HeroSection :background="backgroundImg">
       <HeroContent title="Nikita Chepik" description="Мой код — это инструмент для роста бизнеса!" />
     </HeroSection>
-    <ResumeWhyWebDevSection title="Почему я выбрал веб-разработку" :reason="historyText" />
-    <ResumeTechnologyStackSection title="Стек технологий"
+    <ResumeWhyWebDevSection title="Почему я выбрал веб-разработку" :reason="reasons" />
+    <ResumeTechnologyStackSection
+      title="Стек технологий"
       description="Использую современные инструменты для создания отзывчивых и производительных интерфейсов. Ориентирован на качество кода и итоговый пользовательский опыт."
-      :images="images" />
-    <ResumeSkillsSection title="Навыки" :softs="itemsS" :hards="itemsH" />
+      :images="images"
+    />
+    <ResumeSkillsSection title="Навыки" :softs="softSkills" :hards="hardSkills" />
   </article>
 </template>
 
 <script setup lang="ts">
-
+import { onMounted } from 'vue';
 import backgroundImg from '~/assets/resume.png';
+import { useResume } from '~/composables/hooks/useResume';
 
-const { data, skills, status } = await useFetch('api/skill/list', {
-  method: 'GET',
-});
+const {
+  softSkills,
+  hardSkills,
+  reasons,
+  loading,
+  fetchAll
+} = useResume()
+
+onMounted(async () => {
+  await fetchAll()
+})
 
 const historyText = [
   { title: "Непрерывное развитие и вызов", description: "Программирование для меня — это, в первую очередь, постоянное развитие. Сфера IT очень динамична: технологии и инструменты быстро устаревают, а каждый новый проект — это шанс освоить что‑то новое. Это не позволяет работе стать рутиной и делает её по‑настоящему увлекательной." },
