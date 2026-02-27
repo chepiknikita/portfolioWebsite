@@ -1,8 +1,8 @@
-import type { ResumeSection } from "@prisma/client";
+import type { ResumeSection, ResumeSectionType } from "@prisma/client";
 
 export class ResumeSectionDto {
   id: number;
-  type: string;
+  type: ResumeSectionType;
   title: string;
   content: string;
 

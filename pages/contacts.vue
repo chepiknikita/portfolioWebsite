@@ -11,11 +11,9 @@
 </template>
 
 <script setup lang="ts">
-  import { useContacts } from "~/composables/hooks/useContacts";
+  import { getContacts } from "~/services/api/contacts";
 
-  const { sections, loading, fetchAll } = useContacts();
-
-  await fetchAll();
+  const { data: sections } = await getContacts();
 </script>
 
 <style scoped></style>

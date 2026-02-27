@@ -14,11 +14,9 @@
 </template>
 
 <script setup lang="ts">
-  import { useHome } from "~/composables/hooks/useHome";
+  import { getHomeSections } from "~/services/api/home";
 
-  const { sections, loading, fetchAll } = useHome();
-
-  await fetchAll();
+  const { data: sections } = await getHomeSections();
 </script>
 
 <style lang="scss" scoped></style>

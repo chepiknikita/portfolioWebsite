@@ -12,7 +12,7 @@
       <ProjectCard
         v-for="project in projects"
         :key="project.id"
-        :to="`/projects/{${project.id}}`"
+        :to="`/projects/${project.slug}`"
         :title="project.name"
         :image="project.image"
       />
@@ -21,12 +21,9 @@
 </template>
 
 <script setup lang="ts">
-  import { useProjects } from "~/composables/hooks/useProjects";
+  import { getProjects } from "~/services/api/projects";
 
-  const { projects, projectBySlug, loading, fetchAll, fetchBySlug } =
-    useProjects();
-
-  await fetchAll();
+  const { data: projects } = await getProjects();
 </script>
 
 <style scoped></style>

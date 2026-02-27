@@ -18,6 +18,13 @@ export default defineNuxtConfig({
     provider: 'ipx',
     dir: 'storage',
   },
+  routeRules: {
+    '/api/home': { swr: 300 },
+    '/api/contacts': { swr: 300 },
+    '/api/resume': { swr: 300 },
+    '/api/projects': { swr: 300 },
+    '/api/projects/**': { swr: 300 },
+  },
   // runtimeConfig: {
   //   public: {
   //     storagePath: process.env.STORAGE_PATH ?? './storage',

@@ -23,11 +23,21 @@
 </template>
 
 <script setup lang="ts">
-  import { useResume } from "~/composables/hooks/useResume";
+  import { computed } from "vue";
+  import { ResumeSectionType } from "@prisma/client";
+  import { getResumeSections } from "~/services/api/resume";
 
-  const { softSkills, hardSkills, reasons, loading, fetchAll } = useResume();
+  const { data: sections } = await getResumeSections();
 
-  await fetchAll();
+  const softSkills = computed(() =>
+    sections.value.filter((item) => item.type === ResumeSectionType.SOFT),
+  );
+  const hardSkills = computed(() =>
+    sections.value.filter((item) => item.type === ResumeSectionType.HARD),
+  );
+  const reasons = computed(() =>
+    sections.value.filter((item) => item.type === ResumeSectionType.REASON),
+  );
 </script>
 
 <style scoped></style>

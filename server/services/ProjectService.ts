@@ -1,12 +1,13 @@
 import { ProjectRepository } from "../repositories/ProjectRepository";
 import { ProjectResponseDto } from "../dto/ProjectResponseDto";
+import { ProjectListItemDto } from "../dto/ProjectListItemDto";
 
 export class ProjectService {
   private repository = new ProjectRepository();
 
   async getAll() {
     const projects = await this.repository.findAll();
-    return projects.map((p: any) => new ProjectResponseDto(p));
+    return projects.map((p: any) => new ProjectListItemDto(p));
   }
 
   async getBySlug(slug: string) {
