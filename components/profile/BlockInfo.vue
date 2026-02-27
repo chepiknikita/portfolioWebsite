@@ -2,7 +2,15 @@
   <div class="grid gap-8 my-4 max-w-xs sm:mx-auto sm:max-w-md md:max-w-full md:flex md:my-10 lg:my-20 2xl:my-24"
     :class="{ 'md:flex-row-reverse': imageRight }">
     <div v-if="image" class="w-full h-96 sm:h-[576px] md:h-[496px] md:flex-1 lg:h-[624px] 2xl:h-[936px]">
-      <img alt="image" src="../../assets/image.png" class="size-full object-cover object-center">
+      <NuxtImg
+        :src="image"
+        alt="image"
+        class="size-full object-cover object-center"
+        width="1200"
+        height="900"
+        format="webp"
+        loading="lazy"
+      />
     </div>
 
     <div class="md:flex-1 md:flex md:justify-center md:items-center md:flex-col">

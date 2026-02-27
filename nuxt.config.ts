@@ -11,10 +11,24 @@ export default defineNuxtConfig({
       autoprefixer: {},
     },
   },
-  image: {
-    dir: 'assets/images',
-  },
   prisma: {
     autoSetupPrisma: true,
-  }
+  },
+  image: {
+    provider: 'ipx',
+    dir: 'storage',
+  },
+  // runtimeConfig: {
+  //   public: {
+  //     storagePath: process.env.STORAGE_PATH ?? './storage',
+  //   }
+  // },
+  // nitro: {
+  //   devProxy: {
+  //     '/images': {
+  //       target: 'http://localhost:3000/storage',
+  //       changeOrigin: true
+  //     }
+  //   }
+  // }
 })

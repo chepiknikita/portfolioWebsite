@@ -16,7 +16,11 @@
 </template>
 
 <script setup lang="ts">
+import type { ContactResponseDto } from "~/server/dto/ContactResponseDto";
 
+defineProps<{
+  sections: ContactResponseDto[];
+}>();
 </script>
 
 <style scoped></style>
