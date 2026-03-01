@@ -1,5 +1,5 @@
 <template>
-  <div class="h-[468px] max-w-72 sm:max-w-md md:max-w-52 md:h-96 lg:max-w-64 2xl:max-w-96 2xl:h-[558px]">
+  <div class="h-[468px] max-w-72 sm:max-w-md md:max-w-full md:h-96 2xl:h-[558px]">
     <NuxtLink :to="to" class="block h-96 md:h-72 lg:h-80 2xl:h-[490px]">
       <NuxtImg
         :src="image"

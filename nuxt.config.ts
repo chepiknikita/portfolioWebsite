@@ -1,7 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: '2024-04-03',
-  devtools: { enabled: true },
+  devtools: { enabled: process.env.NODE_ENV !== 'production' },
   modules: ['@nuxt/fonts', '@nuxt/image'],
   css: ['~/assets/css/main.css'],
 
@@ -11,31 +11,23 @@ export default defineNuxtConfig({
       autoprefixer: {},
     },
   },
-  prisma: {
-    autoSetupPrisma: true,
-  },
   image: {
     provider: 'ipx',
     dir: 'storage',
   },
   routeRules: {
-    '/api/home': { swr: 300 },
-    '/api/contacts': { swr: 300 },
-    '/api/resume': { swr: 300 },
-    '/api/projects': { swr: 300 },
-    '/api/projects/**': { swr: 300 },
-  },
-  // runtimeConfig: {
-  //   public: {
-  //     storagePath: process.env.STORAGE_PATH ?? './storage',
-  //   }
-  // },
-  // nitro: {
-  //   devProxy: {
-  //     '/images': {
-  //       target: 'http://localhost:3000/storage',
-  //       changeOrigin: true
-  //     }
-  //   }
-  // }
+    '/**': {
+      headers: {
+        'X-Frame-Options': 'SAMEORIGIN',
+        'X-Content-Type-Options': 'nosniff',
+        'Referrer-Policy': 'strict-origin-when-cross-origin',
+        'Permissions-Policy': 'camera=(), microphone=(), geolocation=()',
+      },
+    },
+    '/api/home': { swr: 3600 },
+    '/api/contacts': { swr: 3600 },
+    '/api/resume': { swr: 3600 },
+    '/api/projects': { swr: 3600 },
+    '/api/projects/**': { swr: 3600 },
+  }
 })

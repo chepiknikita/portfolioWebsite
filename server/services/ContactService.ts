@@ -1,11 +1,11 @@
 import { ContactResponseDto } from "../dto/ContactResponseDto";
-import { ContactsRepository } from "../repositories/ContactRepository";
+import { ContactRepository } from "../repositories/ContactRepository";
 
 export class ContactService {
-  private repository = new ContactsRepository();
+  private repository = new ContactRepository();
 
-  async getAll() {
+  async getAll(): Promise<ContactResponseDto[]> {
     const contacts = await this.repository.findAll();
-    return contacts.map((c) => new ContactResponseDto(c));
+    return contacts.map((contact) => new ContactResponseDto(contact));
   }
 }

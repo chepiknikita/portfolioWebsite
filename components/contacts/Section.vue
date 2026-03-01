@@ -7,9 +7,9 @@
     </h2>
     <div class="w-full md:flex md:justify-end">
       <div class="my-8 md:flex md:w-full md:justify-end md:gap-2 md:max-w-3xl lg:gap-4 lg:max-w-[824px] 2xl:max-w-[1304px]">
-        <UIButton lable="Telegram" />
-        <UIButton lable="Instagram" />
-        <UIButton lable="Vkontakte" />
+        <UIButton label="Telegram" />
+        <UIButton label="Instagram" />
+        <UIButton label="Vkontakte" />
       </div>
     </div>
   </section>
@@ -22,5 +22,3 @@ defineProps<{
   sections: ContactResponseDto[];
 }>();
 </script>
-
-<style scoped></style>

@@ -1,7 +1,8 @@
 import type { ContactResponseDto } from "~/server/dto/ContactResponseDto";
+import { useApiWithErrorHandling } from "./base";
 
 export const getContacts = () =>
-  useFetch<ContactResponseDto[]>("/api/contacts", {
+  useApiWithErrorHandling<ContactResponseDto[]>("/api/contacts", {
     key: "contacts-sections",
-    default: () => [],
+    defaultValue: () => [],
   });

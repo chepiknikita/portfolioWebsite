@@ -27,17 +27,15 @@
   import { ResumeSectionType } from "@prisma/client";
   import { getResumeSections } from "~/services/api/resume";
 
-  const { data: sections } = await getResumeSections();
+  const { data } = await getResumeSections();
 
   const softSkills = computed(() =>
-    sections.value.filter((item) => item.type === ResumeSectionType.SOFT),
+    (data ?? []).filter((item) => item.type === ResumeSectionType.SOFT),
   );
   const hardSkills = computed(() =>
-    sections.value.filter((item) => item.type === ResumeSectionType.HARD),
+    (data ?? []).filter((item) => item.type === ResumeSectionType.HARD),
   );
   const reasons = computed(() =>
-    sections.value.filter((item) => item.type === ResumeSectionType.REASON),
+    (data ?? []).filter((item) => item.type === ResumeSectionType.REASON),
   );
 </script>
-
-<style scoped></style>

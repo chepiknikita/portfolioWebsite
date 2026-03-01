@@ -16,4 +16,3 @@
   const { data: sections } = await getContacts();
 </script>
 
-<style scoped></style>

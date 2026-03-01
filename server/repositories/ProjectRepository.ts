@@ -15,23 +15,6 @@ export class ProjectRepository {
     });
   }
 
-  async findAllDetailed() {
-    return prisma.project.findMany({
-      include: {
-        links: true,
-        images: true,
-        technologies: {
-          include: {
-            technology: true,
-          },
-        },
-      },
-      orderBy: {
-        createdAt: "desc",
-      },
-    });
-  }
-
   async findBySlug(slug: string) {
     return prisma.project.findFirst({
       where: { slug },

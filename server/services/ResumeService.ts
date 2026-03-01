@@ -7,31 +7,12 @@ export class ResumeService {
 
   async getAll() {
     const sections = await this.repository.findAll();
-    return sections.map((s) => new ResumeSectionDto(s));
+    return sections.map((section) => new ResumeSectionDto(section));
   }
 
-  async getByType(type: string) {
-    if (!Object.values(ResumeSectionType).includes(type as ResumeSectionType)) {
-      throw createError({
-        statusCode: 400,
-        statusMessage: "Invalid resume section type",
-      });
-    }
-
-    const sections = await this.repository.findByType(
-      type as ResumeSectionType,
-    );
-
-    return sections.map((s) => new ResumeSectionDto(s));
+  async getByType(type: ResumeSectionType) {
+    const sections = await this.repository.findByType(type);
+    return sections.map((section) => new ResumeSectionDto(section));
   }
 
-  async create(data: {
-    type: ResumeSectionType;
-    title: string;
-    content: string;
-    order: number;
-  }) {
-    const section = await this.repository.create(data);
-    return new ResumeSectionDto(section);
-  }
 }

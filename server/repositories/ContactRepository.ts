@@ -1,6 +1,6 @@
 import prisma from "~/prisma/client";
 
-export class ContactsRepository {
+export class ContactRepository {
   async findAll() {
     return prisma.contact.findMany({
       orderBy: {

@@ -17,32 +17,4 @@ export class ResumeRepository {
     });
   }
 
-  async create(data: {
-    type: ResumeSectionType;
-    title: string;
-    content: string;
-    order: number;
-  }) {
-    return prisma.resumeSection.create({ data });
-  }
-
-  async update(
-    id: number,
-    data: Partial<{
-      title: string;
-      content: string;
-      order: number;
-    }>,
-  ) {
-    return prisma.resumeSection.update({
-      where: { id },
-      data,
-    });
-  }
-
-  async delete(id: number) {
-    return prisma.resumeSection.delete({
-      where: { id },
-    });
-  }
 }

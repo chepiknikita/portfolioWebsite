@@ -6,10 +6,10 @@ export class ContactResponseDto {
   url: string;
   icon: string;
 
-  constructor(section: Contact) {
-    this.id = section.id;
-    this.name = section.name;
-    this.url = section.url;
-    this.icon = section.icon;
+  constructor(contact: Contact) {
+    this.id = contact.id;
+    this.name = contact.name;
+    this.url = contact.url;
+    this.icon = contact.icon;
   }
 }

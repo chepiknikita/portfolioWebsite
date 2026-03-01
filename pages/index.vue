@@ -6,7 +6,7 @@
         description="Fullstack Developer"
       />
     </HeroSection>
-    <ProfileSection :sections="sections" />
+    <ProfileSection :data="data" />
     <ProjectIntroSection
       text="Представляю вам несколько проектов, над которыми я работал"
     />
@@ -16,7 +16,7 @@
 <script setup lang="ts">
   import { getHomeSections } from "~/services/api/home";
 
-  const { data: sections } = await getHomeSections();
+  const { data } = await getHomeSections();
 </script>
 
 <style lang="scss" scoped></style>
