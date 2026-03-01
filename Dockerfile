@@ -17,19 +17,18 @@ RUN apk add --no-cache openssl && addgroup -S appgroup && adduser -S appuser -G 
 
 WORKDIR /app
 
-COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder --chown=appuser:appgroup /app/node_modules ./node_modules
 
-COPY --from=builder /app/package.json ./package.json
-COPY --from=builder /app/prisma ./prisma
+COPY --from=builder --chown=appuser:appgroup /app/package.json ./package.json
+COPY --from=builder --chown=appuser:appgroup /app/prisma ./prisma
 
-COPY --from=builder /app/.output ./.output
+COPY --from=builder --chown=appuser:appgroup /app/.output ./.output
 
-RUN mkdir -p ./storage
+RUN mkdir -p ./storage && chown appuser:appgroup ./storage
 
-COPY entrypoint.sh ./entrypoint.sh
+COPY --chown=appuser:appgroup entrypoint.sh ./entrypoint.sh
 RUN chmod +x ./entrypoint.sh
 
-RUN chown -R appuser:appgroup /app
 USER appuser
 
 ENV NODE_ENV=production
