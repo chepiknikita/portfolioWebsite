@@ -6,17 +6,28 @@
       способом — отвечу в ближайшее время!
     </h2>
     <div class="w-full md:flex md:justify-end">
-      <div class="my-8 md:flex md:w-full md:justify-end md:gap-2 md:max-w-3xl lg:gap-4 lg:max-w-[824px] 2xl:max-w-[1304px]">
-        <UIButton lable="Telegram" />
-        <UIButton lable="Instagram" />
-        <UIButton lable="Vkontakte" />
+      <div
+        v-if="data"
+        class="my-8 md:flex md:w-full md:justify-end md:gap-2 md:max-w-3xl lg:gap-4 lg:max-w-[824px] 2xl:max-w-[1304px]">
+        <UIButton
+          v-for="item in data"
+          :key="item.id"
+          :label="item.name"
+          @on-click="() => redirect(item.url)"
+        />
       </div>
     </div>
   </section>
 </template>
 
 <script setup lang="ts">
+import type { ContactResponseDto } from "~/server/dto/ContactResponseDto";
 
+defineProps<{
+  data: ContactResponseDto[] | null;
+}>();
+
+const redirect = (url: string) => {
+  window.location.href = url;
+}
 </script>
-
-<style scoped></style>

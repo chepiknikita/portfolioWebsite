@@ -11,10 +11,9 @@
                 class="h-8 w-8 md:h-6 md:w-6 lg:h-8 lg:w-8 2xl:h-12 2xl:w-12"
               >
                 <NuxtLink :to="icon.link">
-                  <NuxtImg
-                    format="svg"
-                    class="hover:fill-white hover:transition-colors hover:duration-500 transition-colors duration-500"
-                    :src="`${icon.name}.svg`"
+                  <component
+                    :is="iconMap[icon.name]"
+                    class="text-brand-brown hover:text-white hover:transition-colors hover:duration-500 transition-colors duration-500 h-8 w-8 md:h-6 md:w-6 lg:h-8 lg:w-8 2xl:h-12 2xl:w-12"
                   />
                 </NuxtLink>
               </span>
@@ -34,6 +33,11 @@
 </template>
 
 <script setup lang="ts">
+import IconsGithub from '~/components/icons/Github.vue'
+import IconsVkontakte from '~/components/icons/Vkontakte.vue'
+import IconsTelegram from '~/components/icons/Telegram.vue'
+import IconsInstagram from '~/components/icons/Instagram.vue'
+
 const icons: { link: string, name: string }[] = [
   {
     link: '/',
@@ -52,6 +56,13 @@ const icons: { link: string, name: string }[] = [
     name: 'instagram',
   },
 ];
+
+const iconMap = {
+  github: IconsGithub,
+  vkontakte: IconsVkontakte,
+  telegram: IconsTelegram,
+  instagram: IconsInstagram
+}
 </script>
 
 <style scoped></style>

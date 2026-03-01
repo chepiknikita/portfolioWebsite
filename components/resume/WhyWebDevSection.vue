@@ -6,7 +6,7 @@
           v-for="(item, index) in reason"
           :key="index"
           :title="item.title"
-          :description="item.description"
+          :content="item.content"
         />
       </div>
     <ResumeCarouselMobile :slides="reason" />
@@ -18,7 +18,7 @@
 
 defineProps<{
   title: string;
-  reason: { title: string, description: string }[];
+  reason: { title: string, content: string }[];
 }>();
 </script>
 

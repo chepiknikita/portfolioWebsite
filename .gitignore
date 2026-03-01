@@ -8,6 +8,7 @@ dist
 
 # Node dependencies
 node_modules
+storage
 
 # Logs
 logs
@@ -15,6 +16,9 @@ logs
 
 # Misc
 .DS_Store
+
+# Seed (contains personal data)
+prisma/seed.ts
 
 # Local env files
 .env

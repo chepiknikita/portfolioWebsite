@@ -13,8 +13,110 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Skill {
-  id      Int      @id @default(autoincrement())
-  title   String   @unique
-  content String[]
+model HomeSection {
+  id            Int           @id @default(autoincrement())
+  title         String
+  description   String
+  image         String
+  imagePosition ImagePosition
+  order         Int
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model ResumeSection {
+  id      Int               @id @default(autoincrement())
+  type    ResumeSectionType
+  title   String
+  content String
+  order   Int
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Project {
+  id          Int    @id @default(autoincrement())
+  name        String
+  slug        String @unique
+  description String
+  image       String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  links        ProjectLink[]
+  images       ProjectImage[]
+  technologies ProjectTechnology[]
+}
+
+model Technology {
+  id   Int    @id @default(autoincrement())
+  name String
+  slug String @unique
+
+  projects ProjectTechnology[]
+}
+
+model ProjectTechnology {
+  projectId    Int
+  technologyId Int
+
+  project    Project    @relation(fields: [projectId], references: [id])
+  technology Technology @relation(fields: [technologyId], references: [id])
+
+  @@id([projectId, technologyId])
+}
+
+model ProjectLink {
+  id   Int             @id @default(autoincrement())
+  type ProjectLinkType
+  url  String
+
+  project   Project @relation(fields: [projectId], references: [id])
+  projectId Int
+}
+
+model ProjectImage {
+  id   Int              @id @default(autoincrement())
+  type ProjectImageType
+  url  String
+
+  project   Project @relation(fields: [projectId], references: [id])
+  projectId Int
+}
+
+model Contact {
+  id     Int     @id @default(autoincrement())
+  name   String
+  url    String
+  icon   String
+  order  Int
+  active Boolean @default(true)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum ImagePosition {
+  LEFT
+  RIGHT
+}
+
+enum ResumeSectionType {
+  REASON
+  SOFT
+  HARD
+}
+
+enum ProjectLinkType {
+  GITHUB
+  DEMO
+  FIGMA
+}
+
+enum ProjectImageType {
+  DESKTOP
+  MOBILE
 }

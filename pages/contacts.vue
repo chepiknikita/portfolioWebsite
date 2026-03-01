@@ -1,15 +1,20 @@
 <template>
   <article class="w-full">
-    <HeroSection :background="backgroundImg">
-      <HeroContent title="Держим связь" description="Обращайтесь за проектами или сотрудничеством!" />
+    <HeroSection background="image.png">
+      <HeroContent
+        title="Держим связь"
+        description="Обращайтесь за проектами или сотрудничеством!"
+      />
     </HeroSection>
-    <ContactsSection />
+    <ContactsSection :data="sortedData" />
   </article>
 </template>
 
 <script setup lang="ts">
-import backgroundImg from '/assets/image.png';
+  import { getContacts } from "~/services/api/contacts";
 
+  const { data } = await getContacts();
+
+  const sortedData = computed(() => (data.value ?? []).sort());
 </script>
 
-<style scoped></style>
