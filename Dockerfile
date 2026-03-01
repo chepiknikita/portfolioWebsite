@@ -16,11 +16,7 @@ RUN addgroup -S appgroup && adduser -S appuser -G appgroup
 
 WORKDIR /app
 
-COPY --from=builder /app/node_modules/.prisma       ./node_modules/.prisma
-COPY --from=builder /app/node_modules/@prisma/client ./node_modules/@prisma/client
-COPY --from=builder /app/node_modules/prisma        ./node_modules/prisma
-COPY --from=builder /app/node_modules/tsx           ./node_modules/tsx
-COPY --from=builder /app/node_modules/.bin/tsx      ./node_modules/.bin/tsx
+COPY --from=builder /app/node_modules ./node_modules
 
 COPY --from=builder /app/prisma ./prisma
 
