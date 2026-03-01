@@ -6,13 +6,15 @@
         description="Обращайтесь за проектами или сотрудничеством!"
       />
     </HeroSection>
-    <ContactsSection :sections="sections" />
+    <ContactsSection :data="sortedData" />
   </article>
 </template>
 
 <script setup lang="ts">
   import { getContacts } from "~/services/api/contacts";
 
-  const { data: sections } = await getContacts();
+  const { data } = await getContacts();
+
+  const sortedData = computed(() => (data.value ?? []).sort());
 </script>
 

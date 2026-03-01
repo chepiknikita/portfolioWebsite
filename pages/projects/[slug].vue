@@ -1,12 +1,6 @@
 <template>
   <section class="size-full px-4 py-8 md:px-10 lg:px-20 2xl:px-24">
-    <div v-if="isLoading" class="py-20 text-center text-sm uppercase">Загрузка проекта...</div>
-
-    <div v-else-if="error" class="py-20 text-center text-sm uppercase text-red-600">
-      Не удалось загрузить проект
-    </div>
-
-    <template v-else-if="project">
+    <template v-if="project">
       <div class="my-24 text-center md:my-28 lg:my-32">
         <h1 class="font-lora text-4xl font-normal sm:text-6xl lg:text-7xl 2xl:text-8xl">
           {{ project.name }}
@@ -27,6 +21,12 @@
 
       <ProjectForm v-model="form" />
     </template>
+
+    <div v-else-if="error" class="py-20 text-center text-sm uppercase text-red-600">
+      Не удалось загрузить проект
+    </div>
+
+    <div v-else class="py-20 text-center text-sm uppercase">Загрузка проекта...</div>
   </section>
 </template>
 
@@ -39,7 +39,7 @@
   const route = useRoute();
   const slug = computed(() => String(route.params.slug ?? ""));
 
-  const { data: project, isLoading, error } = getProjectBySlug(slug);
+  const { data: project, error } = getProjectBySlug(slug);
 
   const form = ref<ProjectFormModel>({
     name: "",
@@ -50,7 +50,7 @@
   });
 
   watch(
-    () => project,
+    project,
     (value) => {
       if (!value) return;
 

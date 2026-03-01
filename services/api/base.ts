@@ -1,13 +1,15 @@
+import { computed } from 'vue';
+import type { ComputedRef } from 'vue';
 import type { ApiErrorPayload } from '~/types/api';
 
 export type { ApiErrorPayload };
 
 export type ApiResponse<T> = {
-  data: T | null;
-  error: ApiErrorPayload | null;
-  isLoading: boolean;
-  isSuccess: boolean;
-  isError: boolean;
+  data: ComputedRef<T | null>;
+  error: ComputedRef<ApiErrorPayload | null>;
+  isLoading: ComputedRef<boolean>;
+  isSuccess: ComputedRef<boolean>;
+  isError: ComputedRef<boolean>;
   refresh: () => void;
 };
 
@@ -49,11 +51,11 @@ export const useApi = <T>(
   });
 
   return {
-    data: data.value ?? null,
-    error: error.value ? (error.value.data as ApiErrorPayload) : null,
-    isLoading: pending.value,
-    isSuccess: !!data.value && !error.value,
-    isError: !!error.value,
+    data: computed(() => data.value ?? null),
+    error: computed(() => error.value ? (error.value.data as ApiErrorPayload) : null),
+    isLoading: computed(() => pending.value),
+    isSuccess: computed(() => !!data.value && !error.value),
+    isError: computed(() => !!error.value),
     refresh
   };
 };

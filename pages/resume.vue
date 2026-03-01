@@ -30,12 +30,12 @@
   const { data } = await getResumeSections();
 
   const softSkills = computed(() =>
-    (data ?? []).filter((item) => item.type === ResumeSectionType.SOFT),
+    (data.value ?? []).filter((item) => item.type === ResumeSectionType.SOFT),
   );
   const hardSkills = computed(() =>
-    (data ?? []).filter((item) => item.type === ResumeSectionType.HARD),
+    (data.value ?? []).filter((item) => item.type === ResumeSectionType.HARD),
   );
   const reasons = computed(() =>
-    (data ?? []).filter((item) => item.type === ResumeSectionType.REASON),
+    (data.value ?? []).filter((item) => item.type === ResumeSectionType.REASON),
   );
 </script>

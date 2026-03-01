@@ -7,12 +7,11 @@
           {{ form.description }}
         </div>
         <UIButton 
-          v-if="form.links.length"
+          v-if="gitUrl"
           label="Посмотреть исходники"
+          @on-click="() => redirect(gitUrl)"
         >
-          <div class="ml-4 h-8 w-8 md:h-6 md:w-6 lg:h-8 lg:w-8 xl:ml-6 2xl:h-12 2xl:w-12">
-            <IconsGithub />
-          </div>
+          <IconsGithub class="ml-4 h-8 w-8 md:h-6 md:w-6 lg:h-8 lg:w-8 xl:ml-6 2xl:h-12 2xl:w-12"/>
         </UIButton>
         <div class="mt-4 sm:mt-8 md:mt-10 lg:mt-14 2xl:mt-20">
           <h2 class="font-lora text-2xl font-normal sm:text-4xl md:text-2xl lg:text-3xl 2xl:text-5xl">
@@ -58,5 +57,11 @@ import {computed} from "vue";
 
   const mobileImages = computed(() => form.value.images?.filter((i) => i.type === 'MOBILE'));
   const desktopImages = computed(() => form.value.images?.filter((i) => i.type === 'DESKTOP'));
+
+  const gitUrl = computed(() => form.value.links.find((link) => link.type === 'GITHUB')?.url ?? '');
+
+  const redirect = (url: string) => {
+    window.location.href = url;
+  }
 </script>
 
