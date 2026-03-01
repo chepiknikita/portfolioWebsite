@@ -1,4 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+import { resolve } from 'path'
+
 export default defineNuxtConfig({
   compatibilityDate: '2024-04-03',
   devtools: { enabled: process.env.NODE_ENV !== 'production' },
@@ -13,7 +15,7 @@ export default defineNuxtConfig({
   },
   image: {
     provider: 'ipx',
-    dir: 'storage',
+    dir: resolve('./storage'),
   },
   routeRules: {
     '/**': {

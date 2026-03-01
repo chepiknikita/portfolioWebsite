@@ -24,3 +24,5 @@ prisma/seed.ts
 .env
 .env.*
 !.env.example
+
+Caddyfile
