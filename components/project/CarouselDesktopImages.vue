@@ -13,15 +13,7 @@
         :key="index"
         class="min-w-full pb-10 flex justify-center"
       >
-        <NuxtImg
-          :src="image.url"
-          :alt="image.url"
-          class="size-full object-cover object-center"
-          width="1200"
-          height="900"
-          format="webp"
-          loading="lazy"
-        />
+        <UIImage :src="image.url" />
       </div>
     </div>
 

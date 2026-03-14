@@ -15,6 +15,8 @@
 
   const { data } = await getContacts();
 
-  const sortedData = computed(() => (data.value ?? []).sort());
+  const sortedData = computed(() =>
+    (data.value ?? []).slice().sort((a, b) => a.order - b.order),
+  );
 </script>
 

@@ -15,7 +15,7 @@
 
   const emit = defineEmits(["onClick"]);
 
-  const handleClick = (event) => {
+  const handleClick = (event: MouseEvent) => {
     emit("onClick", event);
   };
 </script>

@@ -33,36 +33,11 @@
 </template>
 
 <script setup lang="ts">
-import IconsGithub from '~/components/icons/Github.vue'
-import IconsVkontakte from '~/components/icons/Vkontakte.vue'
-import IconsTelegram from '~/components/icons/Telegram.vue'
-import IconsInstagram from '~/components/icons/Instagram.vue'
+import { socialIcons } from "~/config/icons";
+import { socialLinks } from "~/config/navigation";
 
-const icons: { link: string, name: string }[] = [
-  {
-    link: '/',
-    name: 'github',
-  },
-  {
-    link: '/',
-    name: 'vkontakte',
-  },
-  {
-    link: '/',
-    name: 'telegram',
-  },
-  {
-    link: '/',
-    name: 'instagram',
-  },
-];
-
-const iconMap = {
-  github: IconsGithub,
-  vkontakte: IconsVkontakte,
-  telegram: IconsTelegram,
-  instagram: IconsInstagram
-}
+const icons = socialLinks;
+const iconMap = socialIcons;
 </script>
 
 <style scoped></style>

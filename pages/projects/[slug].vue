@@ -8,15 +8,7 @@
       </div>
 
       <div class="h-96 w-full sm:h-[576px] md:h-[496px] lg:h-[624px] 2xl:h-[936px]">
-        <NuxtImg
-          :src="project.image"
-          :alt="project.name"
-          class="size-full object-cover object-center"
-          width="1200"
-          height="900"
-          format="webp"
-          loading="lazy"
-        />
+        <UIImage :src="project.image" :alt="project.name" />
       </div>
 
       <ProjectForm v-model="form" />
@@ -26,15 +18,14 @@
       Не удалось загрузить проект
     </div>
 
-    <div v-else class="py-20 text-center text-sm uppercase">Загрузка проекта...</div>
+    <ProjectDetailSkeleton v-else />
   </section>
 </template>
 
 <script setup lang="ts">
-  import { ref, computed, watch } from "vue";
-  import { useRoute } from "vue-router";
-  import { getProjectBySlug } from "../../services/api/projects";
-  import type { ProjectFormModel } from "../../types/project-form";
+  import { getProjectBySlug } from "~/services/api/projects";
+  import type { ProjectResponseDto } from "~/server/dto/ProjectResponseDto";
+  import type { ProjectFormModel } from "~/types/project-form";
 
   const route = useRoute();
   const slug = computed(() => String(route.params.slug ?? ""));
@@ -51,7 +42,7 @@
 
   watch(
     project,
-    (value) => {
+    (value: ProjectResponseDto | null) => {
       if (!value) return;
 
       form.value = {

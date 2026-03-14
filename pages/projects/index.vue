@@ -9,13 +9,18 @@
     <section
       class="mx-auto grid justify-center px-4 py-14 sm:py-16 md:grid-cols-3 md:gap-2 md:px-10 md:py-20 lg:gap-4 lg:px-20 lg:py-24 xl:max-w-6xl 2xl:gap-6 2xl:py-32"
     >
-      <ProjectCard
-        v-for="project in data"
-        :key="project.id"
-        :to="`/projects/${project.slug}`"
-        :title="project.name"
-        :image="project.image"
-      />
+      <template v-if="isLoading">
+        <ProjectCardSkeleton v-for="i in 3" :key="i" />
+      </template>
+      <template v-else>
+        <ProjectCard
+          v-for="project in data"
+          :key="project.id"
+          :to="`/projects/${project.slug}`"
+          :title="project.name"
+          :image="project.image"
+        />
+      </template>
     </section>
   </article>
 </template>
@@ -23,7 +28,7 @@
 <script setup lang="ts">
   import { getProjects } from "~/services/api/projects";
 
-  const { data } = await getProjects();
+  const { data, isLoading } = await getProjects();
 </script>
 
 <style scoped></style>

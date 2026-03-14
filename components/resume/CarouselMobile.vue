@@ -34,34 +34,23 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onBeforeUnmount } from 'vue'
-
 const props = defineProps<{
   slides: { title: string, content: string }[]
 }>();
 
 const currentIndex = ref(0);
-// let interval = null;
 
 const nextSlide = () => {
   currentIndex.value = (currentIndex.value + 1) % props.slides.length;
 }
 
-// onMounted(() => {
-//   interval = setInterval(nextSlide, 5000);
-// })
-
-// onBeforeUnmount(() => {
-//   clearInterval(interval)
-// })
-
 const touchStartX = ref(0)
 
-const onTouchStart = (e) => {
+const onTouchStart = (e: TouchEvent) => {
   touchStartX.value = e.changedTouches[0].screenX
 }
 
-const onTouchEnd = (e) => {
+const onTouchEnd = (e: TouchEvent) => {
   const diff = e.changedTouches[0].screenX - touchStartX.value
 
   if (diff > 50) {

@@ -50,18 +50,18 @@
 </template>
 
 <script setup lang="ts">
-import {computed} from "vue";
-  import type { ProjectFormModel } from "../../types/project-form";
+  import { ProjectImageType, ProjectLinkType } from "@prisma/client";
+  import type { ProjectFormModel, ProjectFormImage, ProjectFormLink } from "~/types/project-form";
 
   const form = defineModel<ProjectFormModel>({ required: true });
 
-  const mobileImages = computed(() => form.value.images?.filter((i) => i.type === 'MOBILE'));
-  const desktopImages = computed(() => form.value.images?.filter((i) => i.type === 'DESKTOP'));
+  const mobileImages = computed(() => form.value.images?.filter((i: ProjectFormImage) => i.type === ProjectImageType.MOBILE));
+  const desktopImages = computed(() => form.value.images?.filter((i: ProjectFormImage) => i.type === ProjectImageType.DESKTOP));
 
-  const gitUrl = computed(() => form.value.links.find((link) => link.type === 'GITHUB')?.url ?? '');
+  const gitUrl = computed(() => form.value.links.find((link: ProjectFormLink) => link.type === ProjectLinkType.GITHUB)?.url ?? '');
 
   const redirect = (url: string) => {
-    window.location.href = url;
-  }
+    navigateTo(url, { external: true });
+  };
 </script>
 

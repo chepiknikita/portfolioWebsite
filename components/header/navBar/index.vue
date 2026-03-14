@@ -1,5 +1,5 @@
 <template>
-  <header class="relatives flex-none">
+  <header class="relative flex-none">
     <nav
       class="absolute left-0 right-0 top-0 z-10 border-b-[1px] border-white/20"
     >
@@ -20,34 +20,13 @@
 </template>
 
 <script setup lang="ts">
-  import { ref, watch } from "vue";
+  import { navItems } from "~/config/navigation";
+  import { useBodyScroll } from "~/composables/useBodyScroll";
 
   const isOpenMenu = ref<boolean>(false);
-  const menuItems = [
-    {
-      name: "Главная",
-      path: "/",
-      key: "index",
-    },
-    {
-      name: "Резюме",
-      path: "/resume",
-      key: "resume",
-    },
-    {
-      name: "Проекты",
-      path: "/projects",
-      key: "projects",
-    },
-  ];
+  const menuItems = navItems;
 
-  watch(isOpenMenu, (v) => {
-    if (v) {
-      document.body.classList.add("overflow-hidden");
-    } else {
-      document.body.classList.remove("overflow-hidden");
-    }
-  });
+  useBodyScroll(isOpenMenu);
 </script>
 
 <style scoped></style>
