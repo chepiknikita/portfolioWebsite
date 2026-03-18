@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { ref } from 'vue';
-
 interface AccordionItem {
   title: string
   content: string
@@ -11,91 +9,94 @@ const props = defineProps<{
   singleOpen?: boolean
 }>()
 
-const detailsRefs = ref<HTMLDetailsElement[]>([]);
+const openStates = ref<boolean[]>(props.items.map(() => false))
 
-function handleToggle(index: number, event: Event) {
-  if (!props.singleOpen) return
-
-  const target = event.target as HTMLDetailsElement
-
-  // Если текущий details открывается
-  if (target.open) {
-    // Закрываем все другие
-    detailsRefs.value.forEach((detail, i) => {
-      if (i !== index && detail) {
-        detail.open = false
-      }
-    })
+function toggle(index: number) {
+  if (props.singleOpen) {
+    openStates.value = openStates.value.map((_: boolean, i: number) => i === index ? !openStates.value[index] : false)
+  } else {
+    openStates.value[index] = !openStates.value[index]
   }
+}
+
+function onEnter(el: Element) {
+  const htmlEl = el as HTMLElement
+  htmlEl.style.height = '0'
+  htmlEl.style.opacity = '0'
+  requestAnimationFrame(() => {
+    htmlEl.style.height = htmlEl.scrollHeight + 'px'
+    htmlEl.style.opacity = '1'
+  })
+}
+
+function onAfterEnter(el: Element) {
+  (el as HTMLElement).style.height = 'auto'
+}
+
+function onLeave(el: Element) {
+  const htmlEl = el as HTMLElement
+  htmlEl.style.height = htmlEl.scrollHeight + 'px'
+  htmlEl.style.opacity = '1'
+  requestAnimationFrame(() => {
+    htmlEl.style.height = '0'
+    htmlEl.style.opacity = '0'
+  })
 }
 </script>
 
 <template>
-  <div class="space-y-0 accordion-container flex flex-col gap-3">
-    <details
+  <div class="flex flex-col gap-3">
+    <div
       v-for="(item, index) in items"
       :key="index"
-      :ref="(el) => { if (el) detailsRefs[index] = el }"
-      @toggle="handleToggle(index, $event)"
-      class="group accordion-item border border-brand-brown"
+      class="group border border-brand-brown"
+      :class="{ 'is-open': openStates[index] }"
     >
-      <summary
-        class="
-          flex
-          items-center
-          justify-between
-          cursor-pointer
-          uppercase
-          p-4 lg:p-5 2xl:p-7
-          text-sm lg:text-base 2xl:text-xl
-          select-none
-          transition-colors
-          focus-visible:outline-none
-          focus-visible:ring-2"
-        >
-        <span>{{ item.title }}</span>
-        <div class="flex h-4 w-4 sm:h-5 sm:w-5 lg:h-7 lg:w-7 2xl:h-8 2xl:w-8 shrink-0 items-center justify-center ml-2">
-          <svg class="h-full w-full transition-all duration-300 group-open:rotate-45" viewBox="0 0 28 28" fill="none"
-            aria-hidden="true">
-            <path d="M6 12 L18 12 M12 6 L12 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-              class="transition-all duration-300" />
+      <button
+        type="button"
+        class="flex w-full cursor-pointer select-none items-center justify-between p-4 uppercase transition-colors duration-300 focus-visible:outline-none lg:p-5 2xl:p-7"
+        :class="openStates[index] ? 'text-white' : 'text-white/70 hover:text-white'"
+        @click="toggle(index)"
+      >
+        <span class="text-sm lg:text-base 2xl:text-xl">{{ item.title }}</span>
+        <div class="ml-2 flex h-4 w-4 shrink-0 items-center justify-center sm:h-5 sm:w-5 lg:h-7 lg:w-7 2xl:h-8 2xl:w-8">
+          <svg
+            class="h-full w-full transition-transform duration-300"
+            :class="openStates[index] ? 'rotate-45' : 'rotate-0'"
+            viewBox="0 0 28 28"
+            fill="none"
+            aria-hidden="true"
+          >
+            <path
+              d="M6 14 L22 14 M14 6 L14 22"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+            />
           </svg>
         </div>
-      </summary>
-      <div class="accordion-content font-manrope font-normal text-sm lg:text-base 2xl:text-xl">
-        <div class="p-4 lg:px-5 lg:pb-5 2xl:px-7 2xl:pb-7">
-           {{ item.content }}
+      </button>
+
+      <Transition
+        @enter="onEnter"
+        @after-enter="onAfterEnter"
+        @leave="onLeave"
+      >
+        <div
+          v-show="openStates[index]"
+          class="overflow-hidden transition-[height,opacity] duration-350 ease-in-out"
+        >
+          <div class="border-t border-brand-brown/30 p-4 font-manrope text-sm font-normal text-white/80 lg:px-5 lg:pb-5 2xl:px-7 2xl:pb-7 2xl:text-xl">
+            {{ item.content }}
+          </div>
         </div>
-      </div>
-    </details>
+      </Transition>
+    </div>
   </div>
 </template>
 
 <style scoped>
-/* Убираем стандартный маркер в Safari/Firefox */
-summary {
-  list-style: none;
-}
-
-/* Для браузеров, которые не поддерживают list-style:none в summary */
-summary::-webkit-details-marker {
-  display: none;
-}
-
-/* Плавная анимация высоты (опционально) */
-.accordion-content {
-  animation: fadeIn 0.3s ease-out;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.transition-\[height\,opacity\] {
+  transition-property: height, opacity;
 }
 </style>

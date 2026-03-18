@@ -6,7 +6,7 @@
         description="Обращайтесь за проектами или сотрудничеством!"
       />
     </HeroSection>
-    <ContactsSection :data="sortedData" />
+    <ContactsSection v-scroll-animate :data="sortedData" />
   </article>
 </template>
 

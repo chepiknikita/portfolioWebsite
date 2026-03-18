@@ -19,18 +19,24 @@
       </button>
     </div>
 
-    <div
-      class="hidden md:mt-12 md:grid md:grid-cols-9 md:gap-6 lg:mt-16 2xl:mt-24 2xl:gap-8"
-    >
+    <div class="hidden md:block md:mt-12 lg:mt-16 2xl:mt-24">
       <div
-        v-for="[name, component] in Object.entries(iconMap)"
-        :key="name"
-        class="flex justify-center"
+        v-for="(row, rowIndex) in iconRows"
+        :key="rowIndex"
+        v-scroll-animate="{ direction: rowIndex % 2 === 0 ? 'left' : 'right', delay: rowIndex * 100 }"
+        class="flex gap-6 mb-6 2xl:gap-8 2xl:mb-8"
+        :class="rowIndex % 2 === 0 ? 'justify-start' : 'justify-end'"
       >
-        <component
-          :is="component"
-          class="h-10 w-10 md:h-14 md:w-14 lg:h-20 lg:w-20 2xl:h-32 2xl:w-32"
-        />
+        <div
+          v-for="[name, component] in row"
+          :key="name"
+          class="flex justify-center"
+        >
+          <component
+            :is="component"
+            class="h-10 w-10 md:h-14 md:w-14 lg:h-20 lg:w-20 2xl:h-32 2xl:w-32"
+          />
+        </div>
       </div>
     </div>
 
@@ -70,6 +76,15 @@
   }>();
 
   const iconMap = techIcons;
+
+  const iconRows = computed(() => {
+    const entries = Object.entries(iconMap)
+    const rows = []
+    for (let i = 0; i < entries.length; i += 9) {
+      rows.push(entries.slice(i, i + 9))
+    }
+    return rows
+  });
 
   const isOpenMenu = ref<boolean>(false);
 

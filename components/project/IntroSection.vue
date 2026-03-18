@@ -9,7 +9,7 @@
       </NuxtLink>
       <div class="font-lora font-normal text-2xl mb-4 sm:text-4xl md:text-2xl lg:text-3xl 2xl:text-5xl">{{ text }}</div>
       <button
-        class="md:hidden bg-transparent hover:bg-brand-brown font-medium text-sm 2xl:text-2xl uppercase hover:text-white py-6 lg:py-8 xl:py-10 my-4 w-full border border-brand-brown"
+        class="md:hidden bg-transparent hover:bg-brand-brown font-medium text-sm 2xl:text-2xl uppercase hover:text-white py-6 lg:py-8 xl:py-10 my-4 w-full border border-brand-brown transition-colors duration-300"
         @click="() => $router.push('/projects')"
       >
         Просмотреть проекты
