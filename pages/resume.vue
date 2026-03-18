@@ -7,14 +7,17 @@
       />
     </HeroSection>
     <ResumeWhyWebDevSection
+      v-scroll-animate
       title="Почему я выбрал веб-разработку"
       :reason="reasons"
     />
     <ResumeTechnologyStackSection
+      v-scroll-animate="{ delay: 100 }"
       title="Стек технологий"
       description="Использую современные инструменты для создания отзывчивых и производительных интерфейсов. Ориентирован на качество кода и итоговый пользовательский опыт."
     />
     <ResumeSkillsSection
+      v-scroll-animate="{ delay: 150 }"
       title="Навыки"
       :softs="softSkills"
       :hards="hardSkills"

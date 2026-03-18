@@ -1,75 +1,58 @@
-# Nuxt Minimal Starter
+# Portfolio Website
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+Персональный сайт-портфолио, разработанный на **Nuxt 3** + **Vue 3** с серверной частью на базе Nitro, PostgreSQL и Prisma ORM. Поддерживает SSR, кеширование на уровне маршрутов и деплой через Docker.
 
-## Setup
+## Стек технологий
 
-Make sure to install dependencies:
+- **Frontend:** Vue 3, Nuxt 3, TypeScript, Tailwind CSS
+- **Backend:** Nuxt Server (Nitro), Prisma ORM, PostgreSQL
+- **Тестирование:** Vitest
+- **Деплой:** Docker, docker-compose
+
+## Запуск
+
+### Локально
+
+Установить зависимости:
 
 ```bash
-# npm
 npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
 ```
 
-## Development Server
-
-Start the development server on `http://localhost:3000`:
+Скопировать и заполнить переменные окружения:
 
 ```bash
-# npm
+cp .env.example .env
+```
+
+Применить миграции и заполнить базу данных:
+
+```bash
+npx prisma migrate deploy
+npx prisma db seed
+```
+
+Запустить dev-сервер на `http://localhost:3000`:
+
+```bash
 npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
 ```
 
-## Production
-
-Build the application for production:
+### Docker
 
 ```bash
-# npm
+docker-compose up --build
+```
+
+## Сборка для продакшена
+
+```bash
 npm run build
-
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
+npm run preview
 ```
 
-Locally preview production build:
+## Тесты
 
 ```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
+npm test
 ```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.

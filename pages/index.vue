@@ -6,8 +6,8 @@
         description="Fullstack Developer"
       />
     </HeroSection>
-    <ProfileSection :data="data" />
-    <ProjectIntroSection
+    <ProfileSection v-scroll-animate :data="data" />
+    <ProjectIntroSection v-scroll-animate="{ delay: 100 }"
       text="Представляю вам несколько проектов, над которыми я работал"
     />
   </article>

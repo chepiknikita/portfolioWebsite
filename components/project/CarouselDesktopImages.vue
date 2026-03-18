@@ -5,13 +5,13 @@
     @touchend="onTouchEnd"
   >
     <div
-      class="flex transition-transform duration-500 ease-in-out"
+      class="flex h-full transition-transform duration-500 ease-in-out"
       :style="{ transform: `translateX(-${currentIndex * 100}%)` }"
     >
       <div
         v-for="(image, index) in images"
         :key="index"
-        class="min-w-full pb-10 flex justify-center"
+        class="min-w-full h-full"
       >
         <UIImage :src="image.url" />
       </div>

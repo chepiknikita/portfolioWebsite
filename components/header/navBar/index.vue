@@ -2,6 +2,7 @@
   <header class="relative flex-none">
     <nav
       class="absolute left-0 right-0 top-0 z-10 border-b-[1px] border-white/20"
+      :class="scrolled ? 'bg-black/80 backdrop-blur-sm' : 'bg-transparent'"
     >
       <div class="md:mx-16 lg:mx-24 2xl:mx-32">
         <div
@@ -27,6 +28,15 @@
   const menuItems = navItems;
 
   useBodyScroll(isOpenMenu);
+
+  const scrolled = ref(false);
+
+  const handleScroll = () => {
+    scrolled.value = window.scrollY > 40;
+  };
+
+  onMounted(() => window.addEventListener('scroll', handleScroll, { passive: true }));
+  onUnmounted(() => window.removeEventListener('scroll', handleScroll));
 </script>
 
 <style scoped></style>
